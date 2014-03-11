@@ -1,17 +1,16 @@
 ﻿using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Run00.NuProduct.Cecil")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Implementation of Run00.NuProduct using Mono.Cecil")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Run00")]
 [assembly: AssemblyProduct("Run00.NuProduct.Cecil")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyTrademark("Run00")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
