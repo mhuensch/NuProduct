@@ -14,7 +14,7 @@
 		<!--<iconUrl>http://Run00.com/Project/$id$</iconUrl>-->
 		<!--<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>-->
 		<!--<tags>Tag1 Tag2</tags>-->
-		
+
+		<dependency id="Run00.NuProduct" version="$id$" />
 	</metadata>
-	<dependency id="Run00.NuProduct" version="$id$" />
 </package>
