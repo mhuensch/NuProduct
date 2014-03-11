@@ -16,4 +16,5 @@
 		<!--<tags>Tag1 Tag2</tags>-->
 		
 	</metadata>
+	<dependency id="Run00.NuProduct" version="$id$" />
 </package>

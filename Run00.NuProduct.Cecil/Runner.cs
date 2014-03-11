@@ -11,7 +11,7 @@ namespace Run00.NuProduct.Cecil
 			_config = config;
 		}
 
-		void IRunner.Execute(string[] args)
+		VersionChange IRunner.Execute(string[] args)
 		{
 			//TODO: add parsing for more complex arguments
 			var path = args.First();
@@ -25,6 +25,8 @@ namespace Run00.NuProduct.Cecil
 			var change = _versioning.Calculate(assemblies, packageId);
 
 			_nuget.SavePackageVersion(path, change.New);
+
+			return change;
 		}
 
 		private readonly ISemanticVersioning _versioning;
