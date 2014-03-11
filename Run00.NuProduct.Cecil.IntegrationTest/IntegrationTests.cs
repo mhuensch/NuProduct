@@ -10,6 +10,9 @@ extern alias ChangingNamespace;
 extern alias ControlGroup;
 extern alias DeletingClass;
 extern alias RefactoringMethod;
+using Castle.MicroKernel.Registration;
+using Castle.Windsor;
+using Castle.Windsor.Installer;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Run00.MsTest;
 using System.IO;
@@ -20,6 +23,17 @@ namespace Run00.NuProduct.Cecil.IntegrationTest
 	[TestClass, CategorizeByConventionClass(typeof(IntegrationTest))]
 	public class IntegrationTest
 	{
+		[TestInitialize]
+		public void Initialize()
+		{
+			_container = new WindsorContainer();
+			_container.Install(
+				FromAssembly.This(),
+				FromAssembly.InDirectory(new AssemblyFilter(Directory.GetCurrentDirectory()))
+			);
+			_runner = _container.Resolve<IRunner>();
+		}
+
 		[TestMethod, CategorizeByConvention]
 		public void WhenOnlyCodeBlockIsChanged_ShouldBeRefactor()
 		{
@@ -188,10 +202,16 @@ namespace Run00.NuProduct.Cecil.IntegrationTest
 		[TestCleanup]
 		public void Cleanup()
 		{
+			if (_runner == null)
+				_container.Release(_runner);
+
 			//This is necessary because the Package Manager does not overwrite the installation folder
 			//and the version of the test packages never changes.
 			Directory.Delete(Path.Combine(Path.GetTempPath(), "NumericTests"), true);
 		}
+
+		private IRunner _runner;
+		private IWindsorContainer _container;
 
 		private ISemanticVersioning BuildVersioning()
 		{

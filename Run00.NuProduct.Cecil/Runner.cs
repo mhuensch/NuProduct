@@ -4,12 +4,11 @@ namespace Run00.NuProduct.Cecil
 {
 	public class Runner : IRunner
 	{
-		public Runner(ISemanticVersioning versioning, INuGet nuget, NuGetConfiguration config, IReporter reporter)
+		public Runner(ISemanticVersioning versioning, INuGet nuget, NuGetConfiguration config)
 		{
 			_versioning = versioning;
 			_nuget = nuget;
 			_config = config;
-			_reporter = reporter;
 		}
 
 		void IRunner.Execute(string[] args)
@@ -18,7 +17,7 @@ namespace Run00.NuProduct.Cecil
 			var path = args.First();
 			_config.PackageSource = args.Skip(1).Take(1).SingleOrDefault();
 			_config.InstallPath = args.Skip(2).Take(1).SingleOrDefault();
-			
+
 			var manifest = _nuget.ReadManifest(path);
 			var assemblies = manifest.Files.Select(f => f.Source);
 			var packageId = manifest.Metadata.Id;
@@ -31,7 +30,5 @@ namespace Run00.NuProduct.Cecil
 		private readonly ISemanticVersioning _versioning;
 		private readonly INuGet _nuget;
 		private readonly NuGetConfiguration _config;
-		private readonly IReporter _reporter;
-
 	}
 }
