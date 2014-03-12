@@ -46,13 +46,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Sample.AddingEnum", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProduct", "Run00.NuProduct\Run00.NuProduct.csproj", "{81C54433-43E2-48CB-8B84-DB7933B00218}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProduct.Cecil", "Run00.NuProduct.Cecil\Run00.NuProduct.Cecil.csproj", "{3613ACB9-E516-40AB-8D18-F3B8E05C5086}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductCecil", "Run00.NuProductCecil\Run00.NuProductCecil.csproj", "{3613ACB9-E516-40AB-8D18-F3B8E05C5086}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProduct.Cecil.IntegrationTest", "Run00.NuProduct.Cecil.IntegrationTest\Run00.NuProduct.Cecil.IntegrationTest.csproj", "{5E0EFBCA-AE26-4DD8-836B-5CCE3BB6179B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductCecil.UnitTest", "Run00.NuProductCecil.UnitTest\Run00.NuProductCecil.UnitTest.csproj", "{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProduct.Cecil.UnitTest", "Run00.NuProduct.Cecil.UnitTest\Run00.NuProduct.Cecil.UnitTest.csproj", "{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductRoslyn", "Run00.NuProductRoslyn\Run00.NuProductRoslyn.csproj", "{8376410A-A02C-4FAF-8ADE-4A94B03D0A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProduct.WindowsConsole", "Run00.NuProduct.WindowsConsole\Run00.NuProduct.WindowsConsole.csproj", "{A42E00F4-0FEF-45AC-872E-377C31018CAD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductVersioning", "Run00.NuProductVersioning\Run00.NuProductVersioning.csproj", "{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductWindowsConsole", "Run00.NuProductWindowsConsole\Run00.NuProductWindowsConsole.csproj", "{A42E00F4-0FEF-45AC-872E-377C31018CAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductWindowsConsole.IntegrationTest", "Run00.NuProductWindowsConsole.IntegrationTest\Run00.NuProductWindowsConsole.IntegrationTest.csproj", "{6F710AAA-3AE5-4649-9AB7-F819637B8336}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductNuGet", "Run00.NuProductNuGet\Run00.NuProductNuGet.csproj", "{B38274F2-718B-419C-9F55-5FAFE6A22187}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -116,18 +122,30 @@ Global
 		{3613ACB9-E516-40AB-8D18-F3B8E05C5086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3613ACB9-E516-40AB-8D18-F3B8E05C5086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3613ACB9-E516-40AB-8D18-F3B8E05C5086}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E0EFBCA-AE26-4DD8-836B-5CCE3BB6179B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E0EFBCA-AE26-4DD8-836B-5CCE3BB6179B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E0EFBCA-AE26-4DD8-836B-5CCE3BB6179B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E0EFBCA-AE26-4DD8-836B-5CCE3BB6179B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8376410A-A02C-4FAF-8ADE-4A94B03D0A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8376410A-A02C-4FAF-8ADE-4A94B03D0A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8376410A-A02C-4FAF-8ADE-4A94B03D0A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8376410A-A02C-4FAF-8ADE-4A94B03D0A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B38274F2-718B-419C-9F55-5FAFE6A22187}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B38274F2-718B-419C-9F55-5FAFE6A22187}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B38274F2-718B-419C-9F55-5FAFE6A22187}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B38274F2-718B-419C-9F55-5FAFE6A22187}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
