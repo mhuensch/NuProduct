@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Run00.MsTest;
-using Run00.NuProductCecil;
+using System;
 using System.IO;
 
 namespace Run00.NuProductWindowsConsole.IntegrationTest
@@ -12,7 +12,11 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 		[TestInitialize]
 		public void Initialize()
 		{
-			_installPath = Path.Combine(Path.GetTempPath(), "NumericTests");
+			//_installPath = Path.Combine(Path.GetTempPath(), "NumericTests");
+
+			//This is necessary because the Package Manager does not overwrite the installation folder
+			//and the version of the test packages never changes.
+			//Directory.Delete(_installPath, true);
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -169,23 +173,13 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
-		[TestCleanup]
-		public void Cleanup()
-		{
-			//This is necessary because the Package Manager does not overwrite the installation folder
-			//and the version of the test packages never changes.
-			if (Directory.Exists(_installPath))
-				Directory.Delete(_installPath, true);
-		}
-
 		private string[] GetArgs(string targetVersion)
 		{
 			return new[] 
 			{ 
-				"--target", "Test.Sample",
-				"--version", "0.0.0-" + targetVersion,
+				"--target", Path.Combine(Directory.GetCurrentDirectory(), "Test.Sample.0.0.0-" + targetVersion + ".nupkg"),
 				"--host", Directory.GetCurrentDirectory(),
-				"--out", _installPath
+				"--out", Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString())
 			};
 		}
 

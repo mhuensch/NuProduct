@@ -63,38 +63,5 @@ namespace Run00.NuProductCecil
 				.Union(package.FieldDefinitions.Cast<IMemberDefinition>())
 				.ToDictionary(t => t.FullName, t => t);
 		}
-
-		//private List<Difference> GetDifferences(PackageDefinition2 neoPackage, PackageDefinition2 paleoPackage)
-		//{
-		//	var result = new List<Difference>();
-		//	var neos = GetDefs(neoPackage);
-		//	var paleos = GetDefs(paleoPackage);
-
-		//	var addedKeys = neos.Keys.Where(c => paleos.Keys.Contains(c) == false);
-		//	result.AddRange(
-		//		from k in addedKeys
-		//		let m = neos[k]
-		//		select new Difference() { Name = m.FullName, Reason = Difference.ChangeReason.Added });
-
-		//	var removedKeys = paleos.Keys.Where(c => neos.Keys.Contains(c) == false);
-		//	result.AddRange(
-		//		from k in removedKeys
-		//		let m = paleos[k]
-		//		select new Difference() { Name = m.FullName, Reason = Difference.ChangeReason.Removed });
-
-		//	return result;
-		//}
-
-
-		//private Version GetNewVersion(IEnumerable<Difference> diff, Version paleoVersion)
-		//{
-		//	if (diff.Where(d => d.Reason == Difference.ChangeReason.Removed).Any())
-		//		return new Version(paleoVersion.Major + 1, 0, 0, 0);
-
-		//	if (diff.Where(d => d.Reason == Difference.ChangeReason.Added).Any())
-		//		return new Version(paleoVersion.Major, paleoVersion.Minor + 1, 0, 0);
-
-		//	return new Version(paleoVersion.Major, paleoVersion.Minor, paleoVersion.Build + 1, 0);
-		//}
 	}
 }

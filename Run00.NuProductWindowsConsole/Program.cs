@@ -11,7 +11,8 @@ namespace Run00.NuProductWindowsConsole
 {
 	public class Program
 	{
-		//TODO: undo the return value from Main
+		//TODO: Build chocolaty package for this distribution
+		//TODO: Update return value output report of version changes
 		public static void Main(string[] args)
 		{
 			var result = Execute(args);
@@ -37,7 +38,7 @@ namespace Run00.NuProductWindowsConsole
 			if (Parser.Default.ParseArguments(args, arguments) == false)
 				return null;
 
-			container.Register(Component.For<IArguments>().Instance(arguments));
+			container.Register(Component.For<IArguments>().Instance(arguments).LifestyleSingleton());
 
 			try
 			{

@@ -9,9 +9,9 @@ namespace Run00.NuProduct
 		 HelpText = "Nuget package file to be versioned")]
 		public string TargetPackage { get; set; }
 
-		[Option("version", Required = false, DefaultValue = "0.0.0-autoversion",
-		 HelpText = "Target version used when looking for local packages")]
-		public string TargetVersion { get; set; }
+		//[Option("version", Required = false, DefaultValue = "0.0.0-autoversion",
+		// HelpText = "Target version used when looking for local packages")]
+		//public string TargetVersion { get; set; }
 
 		[Option("host", Required = false, DefaultValue = "https://nuget.org/api/v2/",
 		 HelpText = "Host address for the Nuget repository where the latest package can be downloaded")]
@@ -27,14 +27,9 @@ namespace Run00.NuProduct
 			return HelpText.AutoBuild(this, (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
 		}
 
-		string IArguments.GetTargetPackage()
+		string IArguments.GetTargetPackagePath()
 		{
 			return TargetPackage;
-		}
-
-		string IArguments.GetTargetVersion()
-		{
-			return TargetVersion;
 		}
 
 		string IArguments.GetNugetHost()

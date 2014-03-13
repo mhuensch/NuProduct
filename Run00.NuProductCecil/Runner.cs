@@ -19,30 +19,35 @@ namespace Run00.NuProductCecil
 
 		VersionChange IRunner.Execute()
 		{
-			var targetDeffinition = GetPackageDefinition(_arguments.GetTargetPackage(), new SemanticVersion(_arguments.GetTargetVersion()), true);
-			var publicDeffinition = GetPackageDefinition(_arguments.GetTargetPackage(), null, false);
+			var repo = _nugetFactory.GetPackageRepository();
+			var manifest = _nugetFactory.GetTargetManifest();
 
-			var change = _versioning.Calculate(targetDeffinition, publicDeffinition);
-			return change;
+			var targetPackage = repo.FindPackage(manifest.Metadata.Id, new SemanticVersion(manifest.Metadata.Version));
+			var publishedPackage = repo.FindPackage(manifest.Metadata.Id);
 
+			if (targetPackage == null || publishedPackage == null)
+				throw new InvalidOperationException("Can not read package " + manifest.Metadata.Id);
+
+			var targetDeffinition = GetPackageDefinition(targetPackage, true);
+			var publishedDeffinition = GetPackageDefinition(publishedPackage, false);
+
+			var change = _versioning.Calculate(targetDeffinition, publishedDeffinition);
+
+			var major = publishedPackage.Version.Version.Major + change.Change.Major;
+			var minor = publishedPackage.Version.Version.Minor + change.Change.Minor;
+			var patch = publishedPackage.Version.Version.Build + change.Change.Build;
+			var newVersion = new SemanticVersion(major, minor, patch, string.Empty);
+
+			UpdatePackage(targetPackage, newVersion);
 
 			//TODO: Update the current nuget package with the new version (File Name and Manifest)
 			//TODO: Clean up old package and install directory
+
+			return change;
 		}
 
-		public IEnumerable<string> GetPackageDefinition(string packageId, SemanticVersion version, bool includePreRelease)
+		public IEnumerable<string> GetPackageDefinition(IPackage package, bool includePreRelease)
 		{
-			var repo = _nugetFactory.GetPackageRepository();
-			var package = default(IPackage);
-
-			if (version == null)
-				package = repo.FindPackage(packageId);
-			else
-				package = repo.FindPackage(packageId, version);
-
-			if (package == null)
-				throw new InvalidOperationException("Can not read package " + packageId);
-
 			_nugetFactory.GetPackageManager().InstallPackage(package, true, includePreRelease);
 
 			var packageDir = _nugetFactory.GetPackageManager().PathResolver.GetPackageDirectory(package);
@@ -52,52 +57,81 @@ namespace Run00.NuProductCecil
 			return result;
 		}
 
+		private void UpdatePackage(IPackage targetPackage, SemanticVersion newVersion)
+		{
+			//TODO: add parsing for more complex arguments
+			//TODO: get package install directory without copy paste
+
+			_nugetFactory.UpdateTargetManifest(newVersion.ToString());
+
+
+			//var packageDir = _nugetFactory.GetPackageManager().PathResolver.GetPackageDirectory(targetPackage);
+			//var fullDir = Path.Combine(_arguments.GetInstallationDirectory(), packageDir);
+			//var unzipedDir = Path.Combine(Path.GetTempPath(), "unziped");
+			//var nupkgPath = Path.Combine(fullDir, packageDir + ".nupkg");
+
+			//if (Directory.Exists(unzipedDir))
+			//	Directory.Delete(unzipedDir, true);
+
+			//ZipFile.ExtractToDirectory(nupkgPath, unzipedDir);
+
+			//var manifestPath = Directory.GetFiles(unzipedDir, "*.nuspec").FirstOrDefault();
+			//var manifest = default(Manifest);
+
+			//using (var stream = File.OpenRead(manifestPath))
+			//{
+			//	manifest = Manifest.ReadFrom(stream, true);
+			//}
+
+			//using (var stream = File.Open(manifestPath, FileMode.Create))
+			//{
+			//	manifest.Metadata.Version = newVersion.ToString();
+			//	manifest.Save(stream);
+			//}
+
+			//using (var zip = Ionic.Zip.ZipFile.Read(nupkgPath))
+			//{
+			//	zip.RemoveEntry(Path.GetFileName(manifestPath));
+			//	zip.AddFile(manifestPath, string.Empty);
+			//	zip.Save();
+			//}
+
+
+			//var newPath = Path.Combine(Path.GetDirectoryName(_arguments.GetTargetPackageId()), targetPackage.GetFullName().Split(' ').First() + "." + newVersion + ".nupkg");
+			//File.Move(nupkgPath, newPath);
+
+			//using (var modFile = ZipFile.Open(nupkgPath, ZipArchiveMode.Update))
+			//{
+			//	modFile.CreateEntryFromFile(manifestPath, Path.GetFileName(manifestPath), CompressionLevel.Optimal);
+			//}
+			//File.Copy(manifestPath, @"C:\Test.nuspec", true);
+
+
+			//using (var stream = File.OpenRead(nupkgPath))
+			//{
+			//	var archive = new ZipArchive(stream);
+			//	var nuspecStream = archive.Entries.Where(e => Path.GetExtension(e.FullName) == ".nuspec").SingleOrDefault();
+			//	if (nuspecStream == null)
+			//		throw new InvalidOperationException("The supplied nuget package did not contain a nuspec file");
+
+			//	using (var manifestZipStream = nuspecStream.Open())
+			//	{
+			//		using (var manifestStream = File.OpenWrite(manifestPath))
+			//		{
+			//			manifestZipStream.CopyTo(manifestStream);
+			//			var manifest = Manifest.ReadFrom(manifestStream, true);
+			//			manifest.Metadata.Version = newVersion.ToString();
+			//			manifestStream.Flush();
+			//		}
+			//		//TODO: add manifest file to zip stream
+			//		//TODO: rename package file
+			//	}
+			//}
+		}
+
 		private readonly ISemanticVersioning _versioning;
 		private readonly IPackageReader _packageReader;
 		private readonly INuGetFactory _nugetFactory;
 		private readonly IArguments _arguments;
 	}
 }
-
-
-
-
-//var neoReader = _readers.Where(r => r.CanReadPackage(solutionFile, packageId)).FirstOrDefault();
-//var package = neoReader.ReadPackage(solutionFile, packageId);
-
-////TODO: add parsing for more complex arguments
-//var path = args.First();
-//_config.PackageSource = args.Skip(1).Take(1).SingleOrDefault();
-//_config.InstallPath = args.Skip(2).Take(1).SingleOrDefault();
-
-//var manifestStream = default(Stream);
-//var filePath = Guid.NewGuid().ToString();
-//using (var stream = File.OpenRead(path))
-//{
-//	var archive = new System.IO.Compression.ZipArchive(stream);
-//	var nuspecFile = archive.Entries.Where(e => Path.GetExtension(e.FullName) == ".nuspec").SingleOrDefault();
-//	if (nuspecFile == null)
-//		throw new InvalidOperationException("The supplied nuget package did not contain a nuspec file");
-
-//	manifestStream = nuspecFile.Open();
-//	using (var write = File.OpenWrite(filePath))
-//	{
-//		manifestStream.CopyTo(write);
-//		write.Flush();
-//	}
-//}
-
-
-//var manifest = _nuget.ReadManifest(filePath);
-//var packageId = manifest.Metadata.Id;
-
-//var change = _versioning.Calculate(null, packageId);
-
-//var semanticVersion = new SemanticVersion(change.New);
-//manifest.Metadata.Version = semanticVersion.ToString();
-
-//using (var write = File.OpenWrite(filePath))
-//{
-//	manifest.Save(write);
-//}
-

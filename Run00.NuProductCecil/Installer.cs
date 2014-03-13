@@ -12,7 +12,7 @@ namespace Run00.NuProductCecil
 			container.Register(
 				Component.For<IPackageReader>().ImplementedBy<PackageReader>(),
 				Component.For<ISemanticVersioning>().ImplementedBy<SemanticVersioning>(),
-				Component.For<INuGetFactory>().ImplementedBy<NuGetFactory>(),
+				Component.For<INuGetFactory>().ImplementedBy<NuGetFactory>().LifestyleSingleton(),
 				Component.For<IRunner>().ImplementedBy<Runner>()
 			);
 		}
