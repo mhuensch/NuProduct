@@ -3,13 +3,13 @@ using System.Collections.Generic;
 
 namespace Run00.NuProductCecil
 {
-	public class PackageDefinition2
+	public class PackageDefinition
 	{
 		public ICollection<TypeDefinition> TypeDefinitions { get; set; }
 		public ICollection<MethodDefinition> MethodDefinitions { get; set; }
 		public ICollection<FieldDefinition> FieldDefinitions { get; set; }
 
-		public PackageDefinition2()
+		public PackageDefinition()
 		{
 			TypeDefinitions = new List<TypeDefinition>();
 			MethodDefinitions = new List<MethodDefinition>();

@@ -1,11 +1,12 @@
 ﻿using NuGet;
+using Run00.NuProduct;
 using System.IO;
 
-namespace Run00.NuProductWindowsConsole
+namespace Run00.NuProductCecil
 {
 	public class NuGetFactory : INuGetFactory
 	{
-		public NuGetFactory(Arguments arguments)
+		public NuGetFactory(IArguments arguments)
 		{
 			_arguments = arguments;
 		}
@@ -16,7 +17,7 @@ namespace Run00.NuProductWindowsConsole
 				return _packageManager;
 
 			var repo = ((INuGetFactory)this).GetPackageRepository();
-			return new PackageManager(repo, _arguments.InstallationDirectory);
+			return new PackageManager(repo, _arguments.GetInstallationDirectory());
 		}
 
 		NuGet.IPackageRepository INuGetFactory.GetPackageRepository()
@@ -24,13 +25,13 @@ namespace Run00.NuProductWindowsConsole
 			if (_packageRepository != null)
 				return _packageRepository;
 
-			var buildSource = Path.GetDirectoryName(_arguments.TargetPackage);
-			var packageSources = new[] { buildSource, _arguments.NugetHost };
+			var buildSource = Path.GetDirectoryName(_arguments.GetTargetPackage());
+			var packageSources = new[] { buildSource, _arguments.GetNugetHost() };
 			return new AggregateRepository(PackageRepositoryFactory.Default, packageSources, ignoreFailingRepositories: true);
 		}
 
 		private IPackageManager _packageManager;
 		private IPackageRepository _packageRepository;
-		private readonly Arguments _arguments;
+		private readonly IArguments _arguments;
 	}
 }

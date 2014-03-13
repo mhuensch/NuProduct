@@ -66,13 +66,8 @@
       <Link>Properties\ProductInfo.cs</Link>
     </Compile>
     <Compile Include="Arguments.cs" />
-    <Compile Include="Installer.cs" />
-    <Compile Include="INuGetFactory.cs" />
-    <Compile Include="IRunner.cs" />
-    <Compile Include="NuGetFactory.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Runner.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -82,10 +77,6 @@
     <ProjectReference Include="..\Run00.NuProductCecil\Run00.NuProductCecil.csproj">
       <Project>{3613acb9-e516-40ab-8d18-f3b8e05c5086}</Project>
       <Name>Run00.NuProductCecil</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Run00.NuProductVersioning\Run00.NuProductVersioning.csproj">
-      <Project>{6dd91ea8-2cca-4956-91f9-8160dfbc48e6}</Project>
-      <Name>Run00.NuProductVersioning</Name>
     </ProjectReference>
     <ProjectReference Include="..\Run00.NuProduct\Run00.NuProduct.csproj">
       <Project>{81c54433-43e2-48cb-8b84-db7933b00218}</Project>

@@ -1,5 +1,4 @@
-﻿
-using Castle.MicroKernel.Registration;
+﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.Resolvers.SpecializedResolvers;
 using Castle.Windsor;
 using Castle.Windsor.Installer;
@@ -15,12 +14,18 @@ namespace Run00.NuProductWindowsConsole
 		//TODO: undo the return value from Main
 		public static void Main(string[] args)
 		{
-			Run(args);
+			var result = Execute(args);
+
+			if (result != null)
+				Console.WriteLine(result);
+			else
+				Console.WriteLine("No result was returned from the versioning process");
+
 			if (Environment.UserInteractive)
 				Console.ReadKey();
 		}
 
-		public static VersionChange Run(string[] args)
+		public static VersionChange Execute(string[] args)
 		{
 			IRunner runner = null;
 
@@ -32,15 +37,12 @@ namespace Run00.NuProductWindowsConsole
 			if (Parser.Default.ParseArguments(args, arguments) == false)
 				return null;
 
-			container.Register(Component.For<Arguments>().Instance(arguments));
+			container.Register(Component.For<IArguments>().Instance(arguments));
 
 			try
 			{
 				runner = container.Resolve<IRunner>();
-				var result = runner.Execute();
-				Console.WriteLine(result);
-
-				return result;
+				return runner.Execute();
 			}
 			finally
 			{

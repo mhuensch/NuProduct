@@ -1,9 +1,9 @@
 ﻿using CommandLine;
 using CommandLine.Text;
 
-namespace Run00.NuProductWindowsConsole
+namespace Run00.NuProduct
 {
-	public class Arguments
+	public class Arguments : IArguments
 	{
 		[Option("target", Required = true,
 		 HelpText = "Nuget package file to be versioned")]
@@ -25,6 +25,26 @@ namespace Run00.NuProductWindowsConsole
 		public string GetUsage()
 		{
 			return HelpText.AutoBuild(this, (HelpText current) => HelpText.DefaultParsingErrorsHandler(this, current));
+		}
+
+		string IArguments.GetTargetPackage()
+		{
+			return TargetPackage;
+		}
+
+		string IArguments.GetTargetVersion()
+		{
+			return TargetVersion;
+		}
+
+		string IArguments.GetNugetHost()
+		{
+			return NugetHost;
+		}
+
+		string IArguments.GetInstallationDirectory()
+		{
+			return InstallationDirectory;
 		}
 	}
 }

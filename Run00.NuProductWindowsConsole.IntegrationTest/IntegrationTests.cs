@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Run00.MsTest;
+using Run00.NuProductCecil;
 using System.IO;
 
 namespace Run00.NuProductWindowsConsole.IntegrationTest
@@ -12,7 +13,6 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 		public void Initialize()
 		{
 			_installPath = Path.Combine(Path.GetTempPath(), "NumericTests");
-
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -22,7 +22,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("RefactoringMethod");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
@@ -36,7 +36,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("ChangingComments");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Cosmetic, result.Justification.ChangeType);
@@ -50,7 +50,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("DeletingClass");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
@@ -64,7 +64,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("AddingClass");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Enhancement, result.Justification.ChangeType);
@@ -78,7 +78,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("AddingMethod");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Enhancement, result.Justification.ChangeType);
@@ -92,7 +92,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("ChangingMethodSig");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
@@ -106,7 +106,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("ChangingNamespace");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
@@ -120,7 +120,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("ChangingGenericType");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
@@ -134,7 +134,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("AddingPrivateMethod");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
@@ -148,7 +148,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("AddingProperty");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
@@ -162,7 +162,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			var args = GetArgs("AddingEnum");
 
 			//Act
-			var result = Program.Run(args);
+			var result = Program.Execute(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
@@ -180,8 +180,6 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 		private string[] GetArgs(string targetVersion)
 		{
-			//var packagePath = Path.Combine(packageDir, "Test.Sample." + projectId + ".0.0.0.nupkg");
-
 			return new[] 
 			{ 
 				"--target", "Test.Sample",

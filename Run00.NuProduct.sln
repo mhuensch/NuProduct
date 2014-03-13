@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
 		LICENSE = LICENSE
+		PackSamples.bat = PackSamples.bat
 		README.md = README.md
 	EndProjectSection
 EndProject
@@ -19,7 +20,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{46F1D1
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
-		.nuget\PackSamples.bat = .nuget\PackSamples.bat
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Sample.AddingMethod", "Test.Sample.AddingMethod\Test.Sample.AddingMethod.csproj", "{6B61E389-AB62-4291-A321-70812DA7106B}"
@@ -49,8 +49,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductCecil", "Run00.NuProductCecil\Run00.NuProductCecil.csproj", "{3613ACB9-E516-40AB-8D18-F3B8E05C5086}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductCecil.UnitTest", "Run00.NuProductCecil.UnitTest\Run00.NuProductCecil.UnitTest.csproj", "{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductVersioning", "Run00.NuProductVersioning\Run00.NuProductVersioning.csproj", "{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductWindowsConsole", "Run00.NuProductWindowsConsole\Run00.NuProductWindowsConsole.csproj", "{A42E00F4-0FEF-45AC-872E-377C31018CAD}"
 EndProject
@@ -110,10 +108,6 @@ Global
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2FF0F639-BDD3-4ECC-AC1A-BDFD12E24C1E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DD91EA8-2CCA-4956-91F9-8160DFBC48E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A42E00F4-0FEF-45AC-872E-377C31018CAD}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -5,11 +5,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 
-namespace Run00.NuProductWindowsConsole
+namespace Run00.NuProductCecil
 {
 	public class Runner : IRunner
 	{
-		public Runner(ISemanticVersioning versioning, IPackageReader reader, INuGetFactory nugetFactory, Arguments arguments)
+		public Runner(ISemanticVersioning versioning, IPackageReader reader, INuGetFactory nugetFactory, IArguments arguments)
 		{
 			_versioning = versioning;
 			_nugetFactory = nugetFactory;
@@ -19,8 +19,8 @@ namespace Run00.NuProductWindowsConsole
 
 		VersionChange IRunner.Execute()
 		{
-			var targetDeffinition = GetPackageDefinition(_arguments.TargetPackage, new SemanticVersion(_arguments.TargetVersion), true);
-			var publicDeffinition = GetPackageDefinition(_arguments.TargetPackage, null, false);
+			var targetDeffinition = GetPackageDefinition(_arguments.GetTargetPackage(), new SemanticVersion(_arguments.GetTargetVersion()), true);
+			var publicDeffinition = GetPackageDefinition(_arguments.GetTargetPackage(), null, false);
 
 			var change = _versioning.Calculate(targetDeffinition, publicDeffinition);
 			return change;
@@ -46,7 +46,7 @@ namespace Run00.NuProductWindowsConsole
 			_nugetFactory.GetPackageManager().InstallPackage(package, true, includePreRelease);
 
 			var packageDir = _nugetFactory.GetPackageManager().PathResolver.GetPackageDirectory(package);
-			var dllFiles = package.GetLibFiles().Select(f => Path.Combine(_arguments.InstallationDirectory, packageDir, f.Path));
+			var dllFiles = package.GetLibFiles().Select(f => Path.Combine(_arguments.GetInstallationDirectory(), packageDir, f.Path));
 
 			var result = _packageReader.ReadPackage(dllFiles);
 			return result;
@@ -55,7 +55,7 @@ namespace Run00.NuProductWindowsConsole
 		private readonly ISemanticVersioning _versioning;
 		private readonly IPackageReader _packageReader;
 		private readonly INuGetFactory _nugetFactory;
-		private readonly Arguments _arguments;
+		private readonly IArguments _arguments;
 	}
 }
 

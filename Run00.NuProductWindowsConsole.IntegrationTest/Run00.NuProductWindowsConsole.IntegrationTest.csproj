@@ -98,10 +98,6 @@
       <Project>{3613acb9-e516-40ab-8d18-f3b8e05c5086}</Project>
       <Name>Run00.NuProductCecil</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Run00.NuProductVersioning\Run00.NuProductVersioning.csproj">
-      <Project>{6dd91ea8-2cca-4956-91f9-8160dfbc48e6}</Project>
-      <Name>Run00.NuProductVersioning</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Run00.NuProductWindowsConsole\Run00.NuProductWindowsConsole.csproj">
       <Project>{a42e00f4-0fef-45ac-872e-377c31018cad}</Project>
       <Name>Run00.NuProductWindowsConsole</Name>

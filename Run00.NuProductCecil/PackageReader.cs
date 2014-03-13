@@ -10,7 +10,7 @@ namespace Run00.NuProductCecil
 	{
 		IEnumerable<string> IPackageReader.ReadPackage(IEnumerable<string> assemblyPaths)
 		{
-			var result = new PackageDefinition2();
+			var result = new PackageDefinition();
 			foreach (var assemblyPath in assemblyPaths)
 			{
 				var assembly = AssemblyDefinition.ReadAssembly(assemblyPath);
@@ -24,7 +24,7 @@ namespace Run00.NuProductCecil
 			return GetDefs(result).Keys;
 		}
 
-		public PackageDefinition2 AddExposedTypes(TypeDefinition type, PackageDefinition2 package)
+		public PackageDefinition AddExposedTypes(TypeDefinition type, PackageDefinition package)
 		{
 			var exposedTypes = new List<TypeDefinition>();
 
@@ -55,7 +55,7 @@ namespace Run00.NuProductCecil
 			return package;
 		}
 
-		private Dictionary<string, IMemberDefinition> GetDefs(PackageDefinition2 package)
+		private Dictionary<string, IMemberDefinition> GetDefs(PackageDefinition package)
 		{
 			return package
 				.TypeDefinitions.Cast<IMemberDefinition>()

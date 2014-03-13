@@ -1,6 +1,6 @@
-﻿
-using NuGet;
-namespace Run00.NuProductWindowsConsole
+﻿using NuGet;
+
+namespace Run00.NuProduct
 {
 	public interface INuGetFactory
 	{

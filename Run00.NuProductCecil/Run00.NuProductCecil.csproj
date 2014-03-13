@@ -72,13 +72,12 @@
       <Link>Properties\ProductInfo.cs</Link>
     </Compile>
     <Compile Include="Installer.cs" />
-    <Compile Include="INuGet.cs" />
-    <Compile Include="NuGetConfiguration.cs" />
-    <Compile Include="NuGet.cs" />
-    <Compile Include="PackageDefinition2.cs" />
+    <Compile Include="NuGetFactory.cs" />
+    <Compile Include="PackageDefinition.cs" />
     <Compile Include="PackageReader.cs" />
-    <Compile Include="SemanticVersioning.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Runner.cs" />
+    <Compile Include="SemanticVersioning.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Run00.NuProduct\Run00.NuProduct.csproj">

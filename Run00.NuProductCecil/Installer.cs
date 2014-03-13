@@ -10,9 +10,10 @@ namespace Run00.NuProductCecil
 		void IWindsorInstaller.Install(IWindsorContainer container, IConfigurationStore store)
 		{
 			container.Register(
-				Component.For<INuGet>().ImplementedBy<NuGet>(),
 				Component.For<IPackageReader>().ImplementedBy<PackageReader>(),
-				Component.For<NuGetConfiguration>().Instance(new NuGetConfiguration()).LifestyleSingleton()
+				Component.For<ISemanticVersioning>().ImplementedBy<SemanticVersioning>(),
+				Component.For<INuGetFactory>().ImplementedBy<NuGetFactory>(),
+				Component.For<IRunner>().ImplementedBy<Runner>()
 			);
 		}
 
