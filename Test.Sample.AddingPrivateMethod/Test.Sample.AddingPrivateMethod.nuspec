@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<package >
+	<metadata>
+		<id>Test.Sample</id>
+		<version>$version$-AddingPrivateMethod</version>
+		<title>$title$</title>
+		<authors>Run00</authors>
+		<owners>Run00</owners>
+		<description>Test Sample</description>
+		<copyright>Copyright 2014</copyright>
+	</metadata>
+</package>

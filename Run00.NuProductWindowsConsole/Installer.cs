@@ -1,6 +1,7 @@
 ﻿using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
+using NuGet;
 
 namespace Run00.NuProductWindowsConsole
 {
@@ -9,7 +10,7 @@ namespace Run00.NuProductWindowsConsole
 		void IWindsorInstaller.Install(IWindsorContainer container, IConfigurationStore store)
 		{
 			container.Register(Component.For<IRunner>().ImplementedBy<Runner>());
+			container.Register(Component.For<INuGetFactory>().ImplementedBy<NuGetFactory>());
 		}
-
 	}
 }

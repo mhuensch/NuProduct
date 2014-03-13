@@ -5,6 +5,6 @@ namespace Run00.NuProductWindowsConsole
 {
 	internal interface IRunner
 	{
-		VersionChange Execute(string[] args);
+		VersionChange Execute();
 	}
 }

@@ -1,9 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Roslyn.Compilers.CSharp;
-using Roslyn.Services;
-using Roslyn.Services.CSharp.Classification;
 using Run00.MsTest;
-using Run00.NuProductVersioning;
 using System.IO;
 
 namespace Run00.NuProductWindowsConsole.IntegrationTest
@@ -16,6 +12,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 		public void Initialize()
 		{
 			_installPath = Path.Combine(Path.GetTempPath(), "NumericTests");
+
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -29,7 +26,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
-			Assert.AreEqual("1.0.1.0", result.New.ToString());
+			Assert.AreEqual("0.0.1.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -43,7 +40,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Cosmetic, result.Justification.ChangeType);
-			Assert.AreEqual("1.0.1.0", result.New.ToString());
+			Assert.AreEqual("0.0.1.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -57,7 +54,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
-			Assert.AreEqual("2.0.0.0", result.New.ToString());
+			Assert.AreEqual("1.0.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -71,7 +68,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Enhancement, result.Justification.ChangeType);
-			Assert.AreEqual("1.1.0.0", result.New.ToString());
+			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -85,21 +82,21 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Enhancement, result.Justification.ChangeType);
-			Assert.AreEqual("1.1.0.0", result.New.ToString());
+			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
 		public void WhenMethodIsModified_ShouldBeBreaking()
 		{
 			//Arrange
-			var args = GetArgs("ChangingMethodSignature");
+			var args = GetArgs("ChangingMethodSig");
 
 			//Act
 			var result = Program.Run(args);
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
-			Assert.AreEqual("2.0.0.0", result.New.ToString());
+			Assert.AreEqual("1.0.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -113,7 +110,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
-			Assert.AreEqual("2.0.0.0", result.New.ToString());
+			Assert.AreEqual("1.0.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -127,7 +124,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Breaking, result.Justification.ChangeType);
-			Assert.AreEqual("2.0.0.0", result.New.ToString());
+			Assert.AreEqual("1.0.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -141,7 +138,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
-			Assert.AreEqual("1.0.1.0", result.New.ToString());
+			Assert.AreEqual("0.0.1.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -155,7 +152,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
-			Assert.AreEqual("1.1.0.0", result.New.ToString());
+			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -169,7 +166,7 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 
 			//Assert
 			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
-			Assert.AreEqual("1.1.0.0", result.New.ToString());
+			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
 		[TestCleanup]
@@ -181,18 +178,17 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 				Directory.Delete(_installPath, true);
 		}
 
-		private string[] GetArgs(string projectId)
+		private string[] GetArgs(string targetVersion)
 		{
-			//var w = Workspace.LoadSolution(@"C:\SourceCode\Run00\Versioning.Roslyn\Run00.VersioningRoslyn.IntegrationTest\Artifacts\Adding\Test.Sample.sln");
-			//var s = w.CurrentSolution;
-			//foreach (var p in s.Projects)
-			//	p.ToString();
-
-			//var packageDir = Directory.GetCurrentDirectory();
 			//var packagePath = Path.Combine(packageDir, "Test.Sample." + projectId + ".0.0.0.nupkg");
-			//return new[] { packagePath, packageDir, _installPath, "Test.Sample.ControlGroup" };
 
-			return new[] { @"..\..\..\Run00.NuProduct.roslyn.sln", "Test.Sample." + projectId };
+			return new[] 
+			{ 
+				"--target", "Test.Sample",
+				"--version", "0.0.0-" + targetVersion,
+				"--host", Directory.GetCurrentDirectory(),
+				"--out", _installPath
+			};
 		}
 
 		private string _installPath;

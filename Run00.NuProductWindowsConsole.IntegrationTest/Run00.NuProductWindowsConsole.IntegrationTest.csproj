@@ -53,31 +53,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NuGet.Core.2.8.0\lib\net40-Client\NuGet.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Roslyn.Compilers, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Roslyn.Compilers.Common.1.2.20906.2\lib\net45\Roslyn.Compilers.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Compilers.CSharp, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Roslyn.Compilers.CSharp.1.2.20906.2\lib\net45\Roslyn.Compilers.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Compilers.VisualBasic">
-      <HintPath>..\packages\Roslyn.Compilers.VisualBasic.1.2.20906.2\lib\net45\Roslyn.Compilers.VisualBasic.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Services, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Roslyn.Services.Common.1.2.20906.2\lib\net45\Roslyn.Services.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Services.CSharp">
-      <HintPath>..\packages\Roslyn.Services.CSharp.1.2.20906.2\lib\net45\Roslyn.Services.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Services.VisualBasic">
-      <HintPath>..\packages\Roslyn.Services.VisualBasic.1.2.20906.2\lib\net45\Roslyn.Services.VisualBasic.dll</HintPath>
-    </Reference>
-    <Reference Include="Roslyn.Utilities, Version=1.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Roslyn.Services.Common.1.2.20906.2\lib\net45\Roslyn.Utilities.dll</HintPath>
-    </Reference>
     <Reference Include="Run00.MsTest">
       <HintPath>..\packages\Run00.MsTest.0.10.10\lib\Run00.MsTest.dll</HintPath>
     </Reference>
@@ -100,31 +75,28 @@
   <ItemGroup>
     <Compile Include="IntegrationTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoslynReferanceHacks.cs" />
+    <Compile Include="ReferenceHacks.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Artifacts\Test.Sample.AddingClass.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.AddingEnum.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.AddingMethod.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.AddingPrivateMethod.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.AddingProperty.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.ChangingComments.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.ChangingGenericType.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.ChangingMethodSignature.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.ChangingNamespace.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.ControlGroup.1.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.DeletingClass.0.0.0.nupkg" />
-    <None Include="Artifacts\Test.Sample.RefactoringMethod.0.0.0.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-AddingClass.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-AddingEnum.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-AddingMethod.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-AddingPrivateMethod.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-AddingProperty.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-ChangingComments.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-ChangingGenericType.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-ChangingMethodSig.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-ChangingNamespace.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-ControlGroup.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-DeletingClass.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-RefactoringMethod.nupkg" />
+    <None Include="Artifacts\Test.Sample.1.0.0.nupkg" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Run00.NuProductCecil\Run00.NuProductCecil.csproj">
       <Project>{3613acb9-e516-40ab-8d18-f3b8e05c5086}</Project>
       <Name>Run00.NuProductCecil</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Run00.NuProductRoslyn\Run00.NuProductRoslyn.csproj">
-      <Project>{8376410a-a02c-4faf-8ade-4a94b03d0a65}</Project>
-      <Name>Run00.NuProductRoslyn</Name>
     </ProjectReference>
     <ProjectReference Include="..\Run00.NuProductVersioning\Run00.NuProductVersioning.csproj">
       <Project>{6dd91ea8-2cca-4956-91f9-8160dfbc48e6}</Project>

@@ -42,7 +42,6 @@
     <Compile Include="Difference.cs" />
     <Compile Include="IPackageReader.cs" />
     <Compile Include="ISemanticVersioning.cs" />
-    <Compile Include="PackageDefinition.cs" />
     <Compile Include="Properties\ProductInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VersionChange.cs" />
