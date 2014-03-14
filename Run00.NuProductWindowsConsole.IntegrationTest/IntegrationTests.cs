@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Run00.MsTest;
-using System;
+using Run00.NuProduct;
 using System.IO;
 
 namespace Run00.NuProductWindowsConsole.IntegrationTest
@@ -12,11 +12,12 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 		[TestInitialize]
 		public void Initialize()
 		{
-			//_installPath = Path.Combine(Path.GetTempPath(), "NumericTests");
+			if (Directory.Exists(Arguments.GetProductDir()) == false)
+				return;
 
 			//This is necessary because the Package Manager does not overwrite the installation folder
 			//and the version of the test packages never changes.
-			//Directory.Delete(_installPath, true);
+			Directory.Delete(Arguments.GetProductDir(), true);
 		}
 
 		[TestMethod, CategorizeByConvention]
@@ -179,11 +180,9 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			{ 
 				"--target", Path.Combine(Directory.GetCurrentDirectory(), "Test.Sample.0.0.0-" + targetVersion + ".nupkg"),
 				"--host", Directory.GetCurrentDirectory(),
-				"--out", Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString())
+				"--out", Path.Combine(Arguments.GetProductDir(), "Output")
 			};
 		}
-
-		private string _installPath;
 
 	}
 }

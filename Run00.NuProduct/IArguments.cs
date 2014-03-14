@@ -7,6 +7,8 @@ namespace Run00.NuProduct
 
 		string GetNugetHost();
 
+		string GetOutputDirectory();
+
 		string GetInstallationDirectory();
 	}
 }
