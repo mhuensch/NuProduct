@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+	<metadata>
+		<id>Run00.NuProductWindowsConsole</id>
+		<version>1.0.0</version>
+		<title>Blah</title>
+		<authors>Run00</authors>
+		<owners>Run00</owners>
+		<copyright>Copyright © Jeffrey Cameron 2010-2011</copyright>
+		<description>Blah</description>
+	</metadata>
+	<files>
+		<file src="Run00.NuProductWindowsConsole.targets" target="build" />
+		<file src="Run00.NuProductWindowsConsole.props" target="build" />
+		<file src="bin\Debug\*.dll" target="tools" />
+		<file src="bin\Debug\*.exe" target="tools" />
+	</files>
+</package>

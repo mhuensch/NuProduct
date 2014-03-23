@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Target Name="SemanticVersioning" AfterTargets="BuildPackage" Condition="$(CalculateSemanticVersion) == 'true'" >
+		<Message Text="Updating package version using NuProduct" Importance="high" />
+		<PropertyGroup>
+			<VersioningCommand>$(SolutionDir)packages\Run00.NuProductWindowsConsole.1.0.0\tools\Run00.NuProductWindowsConsole.exe --target $(ProjectDir)$(OutputPath)</VersioningCommand>
+		</PropertyGroup>
+		<Exec Command="$(VersioningCommand)" Condition=" '$(OS)' != 'Windows_NT' " />
+		<Exec Command="$(VersioningCommand)" LogStandardErrorAsError="true" Condition=" '$(OS)' == 'Windows_NT' " />
+	</Target>
+</Project>

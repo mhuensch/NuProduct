@@ -66,6 +66,22 @@ namespace Run00.NuProductCecil
 				zip.Save(outputFile);
 				File.Delete(path);
 			}
+
+			using (var zip = ZipFile.Read(_arguments.GetTargetPackagePath().Replace(".nupkg", ".symbols.nupkg")))
+			{
+				var entry = zip.Where(e => Path.GetExtension(e.FileName).Equals(".nuspec")).FirstOrDefault();
+				result = Manifest.ReadFrom(entry.OpenReader(), true);
+				result.Metadata.Version = version;
+
+				var path = Path.Combine(_arguments.GetInstallationDirectory(), entry.FileName);
+				using (var write = File.Open(path, FileMode.Create))
+				{
+					result.Save(write);
+				}
+				zip.UpdateItem(path, string.Empty);
+				zip.Save(outputFile.Replace(".nupkg", ".symbols.nupkg"));
+				File.Delete(path);
+			}
 		}
 
 		private IPackageManager _packageManager;

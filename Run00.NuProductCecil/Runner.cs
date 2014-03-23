@@ -42,6 +42,9 @@ namespace Run00.NuProductCecil
 
 			//TODO: Clean up old package and install directory
 
+			_nugetFactory.GetPackageManager().UninstallPackage(targetPackage, true, true);
+			_nugetFactory.GetPackageManager().UninstallPackage(publishedPackage, true, true);
+
 			return change;
 		}
 

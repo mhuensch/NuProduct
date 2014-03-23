@@ -11,27 +11,6 @@ namespace Run00.NuProductWindowsConsole
 {
 	public class Program
 	{
-		//TODO: Build chocolaty package for this distribution
-		//TODO: Update return value output report of version changes
-		public static int Main(string[] args)
-		{
-			try
-			{
-				var result = Execute(args);
-
-				if (result != null)
-					Console.WriteLine("NuProduct Result - " + result);
-				else
-					Console.WriteLine("No result was returned from the versioning process");
-				return 0;
-			}
-			catch (Exception ex)
-			{
-				Console.WriteLine(ex);
-				return 1;
-			}
-		}
-
 		public static VersionChange Execute(string[] args)
 		{
 			IRunner runner = null;
