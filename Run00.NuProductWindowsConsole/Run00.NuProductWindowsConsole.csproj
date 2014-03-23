@@ -71,6 +71,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Install.ps1" />
     <None Include="packages.config" />
     <None Include="Run00.NuProductWindowsConsole.nuspec" />
     <None Include="Run00.NuProductWindowsConsole.props" />
@@ -85,6 +86,9 @@
       <Project>{81c54433-43e2-48cb-8b84-db7933b00218}</Project>
       <Name>Run00.NuProduct</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Run00.NuProductWindowsConsoleAdditional.props.template" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

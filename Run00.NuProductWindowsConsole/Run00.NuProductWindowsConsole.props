@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+	<Import Project="Run00.NuProductWindowsConsoleAdditional.props" Condition="Exists('Run00.NuProductWindowsConsoleAdditional.props')" />
 	<PropertyGroup>
 		<BuildPackage>true</BuildPackage>
 		<CalculateSemanticVersion Condition="$(CalculateSemanticVersion) == ''" >true</CalculateSemanticVersion>

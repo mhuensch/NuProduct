@@ -12,6 +12,8 @@
 	<files>
 		<file src="Run00.NuProductWindowsConsole.targets" target="build" />
 		<file src="Run00.NuProductWindowsConsole.props" target="build" />
+		<file src="Run00.NuProductWindowsConsoleAdditional.props.template" target="tools" />
+		<file src="Install.ps1" target="tools" />
 		<file src="bin\Debug\*.dll" target="tools" />
 		<file src="bin\Debug\*.exe" target="tools" />
 	</files>
