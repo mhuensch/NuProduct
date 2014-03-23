@@ -3,11 +3,11 @@
 	<metadata>
 		<id>Run00.NuProductWindowsConsole</id>
 		<version>1.0.0</version>
-		<title>Blah</title>
+		<title>Run00.NuProductWindowsConsole</title>
 		<authors>Run00</authors>
 		<owners>Run00</owners>
-		<copyright>Copyright © Jeffrey Cameron 2010-2011</copyright>
-		<description>Blah</description>
+		<copyright>Copyright © Run00 2014</copyright>
+		<description>Console application to semantically version NuGet packages</description>
 	</metadata>
 	<files>
 		<file src="Run00.NuProductWindowsConsole.targets" target="build" />
