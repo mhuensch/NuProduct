@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<copyversionfrom>Test.Sample.0.0.0-CopyVersionTarget.nupkg</copyversionfrom>
+</product>

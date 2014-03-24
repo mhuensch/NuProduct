@@ -1,9 +1,11 @@
-﻿using NuGet;
+﻿using Ionic.Zip;
+using NuGet;
 using Run00.NuProduct;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Xml.Serialization;
 
 namespace Run00.NuProductCecil
 {
@@ -31,6 +33,31 @@ namespace Run00.NuProductCecil
 			var targetDeffinition = GetPackageDefinition(targetPackage, true);
 			var publishedDeffinition = GetPackageDefinition(publishedPackage, false);
 
+			var productFile = targetPackage
+				.GetFiles()
+				.Where(f => Path.GetExtension(f.Path).Equals(".nuprod", StringComparison.InvariantCultureIgnoreCase))
+				.FirstOrDefault();
+
+			if (productFile != null)
+			{
+				var packageDir = _nugetFactory.GetPackageManager().PathResolver.GetPackageDirectory(targetPackage);
+				var path = Path.Combine(_arguments.GetInstallationDirectory(), packageDir, productFile.Path);
+				var serializer = new XmlSerializer(typeof(Product));
+				var product = default(Product);
+				using (var stream = File.OpenRead(path))
+				{
+					product = (Product)serializer.Deserialize(stream);
+				}
+
+				using (var zip = ZipFile.Read(product.CopyVersionFrom))
+				{
+					var entry = zip.Where(e => Path.GetExtension(e.FileName).Equals(".nuspec")).FirstOrDefault();
+					var m = Manifest.ReadFrom(entry.OpenReader(), true);
+					return new VersionChange() { Change = new Version(m.Metadata.Version) };
+				}
+			}
+
+
 			var change = _versioning.Calculate(targetDeffinition, publishedDeffinition);
 
 			var major = publishedPackage.Version.Version.Major + change.Change.Major;
@@ -39,8 +66,6 @@ namespace Run00.NuProductCecil
 			var newVersion = new SemanticVersion(major, minor, patch, string.Empty);
 
 			_nugetFactory.UpdateTargetManifest(newVersion.ToString());
-
-			//TODO: Clean up old package and install directory
 
 			_nugetFactory.GetPackageManager().UninstallPackage(targetPackage, true, true);
 			_nugetFactory.GetPackageManager().UninstallPackage(publishedPackage, true, true);

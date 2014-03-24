@@ -174,6 +174,20 @@ namespace Run00.NuProductWindowsConsole.IntegrationTest
 			Assert.AreEqual("0.1.0.0", result.Change.ToString());
 		}
 
+		[TestMethod, CategorizeByConvention]
+		public void WhenNuProdHasCopyVersion_ShouldCopyVersionFromGivenPackage()
+		{
+			//Arrange
+			var args = GetArgs("CopyVersion");
+
+			//Act
+			var result = Program.Execute(args);
+
+			//Assert
+			//Assert.AreEqual(ContractChangeType.Refactor, result.Justification.ChangeType);
+			Assert.AreEqual("3.0.0", result.Change.ToString());
+		}
+
 		private string[] GetArgs(string targetVersion)
 		{
 			return new[] 

@@ -67,7 +67,11 @@ namespace Run00.NuProductCecil
 				File.Delete(path);
 			}
 
-			using (var zip = ZipFile.Read(_arguments.GetTargetPackagePath().Replace(".nupkg", ".symbols.nupkg")))
+			var symbolsPackage = _arguments.GetTargetPackagePath().Replace(".nupkg", ".symbols.nupkg");
+			if (File.Exists(symbolsPackage) == false)
+				return;
+
+			using (var zip = ZipFile.Read(symbolsPackage))
 			{
 				var entry = zip.Where(e => Path.GetExtension(e.FileName).Equals(".nuspec")).FirstOrDefault();
 				result = Manifest.ReadFrom(entry.OpenReader(), true);

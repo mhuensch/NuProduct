@@ -54,6 +54,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductWindowsConso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Run00.NuProductWindowsConsole.IntegrationTest", "Run00.NuProductWindowsConsole.IntegrationTest\Run00.NuProductWindowsConsole.IntegrationTest.csproj", "{6F710AAA-3AE5-4649-9AB7-F819637B8336}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Sample.CopyVersion", "Test.Sample.CopyVersion\Test.Sample.CopyVersion.csproj", "{68F059CA-EFCB-4A1D-8665-314C83502CF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -116,6 +118,10 @@ Global
 		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6F710AAA-3AE5-4649-9AB7-F819637B8336}.Release|Any CPU.Build.0 = Release|Any CPU
+		{68F059CA-EFCB-4A1D-8665-314C83502CF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F059CA-EFCB-4A1D-8665-314C83502CF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F059CA-EFCB-4A1D-8665-314C83502CF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F059CA-EFCB-4A1D-8665-314C83502CF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -133,5 +139,6 @@ Global
 		{711025A1-8C0B-4E5D-92EE-7937FDAD8FE0} = {0159A132-A3D1-474E-9BC0-90EE78294E9D}
 		{ED427617-82E5-4B33-9740-7A66A9A60AB3} = {0159A132-A3D1-474E-9BC0-90EE78294E9D}
 		{921DFB75-528E-43D0-B1B7-A9CCFFBAC0C7} = {0159A132-A3D1-474E-9BC0-90EE78294E9D}
+		{68F059CA-EFCB-4A1D-8665-314C83502CF2} = {0159A132-A3D1-474E-9BC0-90EE78294E9D}
 	EndGlobalSection
 EndGlobal

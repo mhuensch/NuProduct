@@ -88,6 +88,8 @@
     <None Include="Artifacts\Test.Sample.0.0.0-ChangingMethodSig.nupkg" />
     <None Include="Artifacts\Test.Sample.0.0.0-ChangingNamespace.nupkg" />
     <None Include="Artifacts\Test.Sample.0.0.0-ControlGroup.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-CopyVersion.nupkg" />
+    <None Include="Artifacts\Test.Sample.0.0.0-CopyVersionTarget.nupkg" />
     <None Include="Artifacts\Test.Sample.0.0.0-DeletingClass.nupkg" />
     <None Include="Artifacts\Test.Sample.0.0.0-RefactoringMethod.nupkg" />
     <None Include="Artifacts\Test.Sample.1.0.0.nupkg" />
