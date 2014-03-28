@@ -33,11 +33,15 @@ namespace Run00.NuProductCecil
 			var targetDeffinition = GetPackageDefinition(targetPackage, true);
 			var publishedDeffinition = GetPackageDefinition(publishedPackage, false);
 
+
+			//TODO: read product id and version to store and update
 			var productFile = targetPackage
 				.GetFiles()
 				.Where(f => Path.GetExtension(f.Path).Equals(".nuprod", StringComparison.InvariantCultureIgnoreCase))
 				.FirstOrDefault();
 
+			var newVersion = default(SemanticVersion);
+			var change = default(VersionChange);
 			if (productFile != null)
 			{
 				var packageDir = _nugetFactory.GetPackageManager().PathResolver.GetPackageDirectory(targetPackage);
@@ -53,17 +57,18 @@ namespace Run00.NuProductCecil
 				{
 					var entry = zip.Where(e => Path.GetExtension(e.FileName).Equals(".nuspec")).FirstOrDefault();
 					var m = Manifest.ReadFrom(entry.OpenReader(), true);
-					return new VersionChange() { Change = new Version(m.Metadata.Version) };
+					change = new VersionChange() { Change = new Version(m.Metadata.Version) };
+					newVersion = new SemanticVersion(change.Change);
 				}
 			}
-
-
-			var change = _versioning.Calculate(targetDeffinition, publishedDeffinition);
-
-			var major = publishedPackage.Version.Version.Major + change.Change.Major;
-			var minor = publishedPackage.Version.Version.Minor + change.Change.Minor;
-			var patch = publishedPackage.Version.Version.Build + change.Change.Build;
-			var newVersion = new SemanticVersion(major, minor, patch, string.Empty);
+			else
+			{
+				change = _versioning.Calculate(targetDeffinition, publishedDeffinition);
+				var major = publishedPackage.Version.Version.Major + change.Change.Major;
+				var minor = publishedPackage.Version.Version.Minor + change.Change.Minor;
+				var patch = publishedPackage.Version.Version.Build + change.Change.Build;
+				newVersion = new SemanticVersion(major, minor, patch, string.Empty);
+			}
 
 			_nugetFactory.UpdateTargetManifest(newVersion.ToString());
 

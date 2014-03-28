@@ -12,10 +12,12 @@ namespace Run00.NuProduct
 
 		public override string ToString()
 		{
+			if (Differences == null)
+				Differences = Enumerable.Empty<Difference>();
+
 			return "Version Increase:" + Change +
 				" Changes:" + Differences.Where(d => d.Reason == Difference.ChangeReason.Removed).Count() +
 				" Updates:" + Differences.Where(d => d.Reason == Difference.ChangeReason.Added).Count();
 		}
-
 	}
 }
